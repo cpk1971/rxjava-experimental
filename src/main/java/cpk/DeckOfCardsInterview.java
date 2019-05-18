@@ -2,7 +2,6 @@ package cpk;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
-import io.reactivex.functions.Function;
 import lombok.Data;
 
 import java.util.*;
