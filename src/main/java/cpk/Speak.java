@@ -6,11 +6,11 @@ import java.util.AbstractMap;
 import java.util.concurrent.TimeUnit;
 
 import static io.reactivex.Observable.just;
-import static java.util.concurrent.TimeUnit.SECONDS;
 
+@SuppressWarnings("WeakerAccess")
 public class Speak implements Spike {
     protected final Observable<String> alice =
-            speak("To be, or not to be: that is the question", 110);;
+            speak("To be, or not to be: that is the question", 110);
 
     protected final Observable<String> bob =
             speak("Though this be madness, yet there are methods in't", 90);
@@ -36,13 +36,11 @@ public class Speak implements Spike {
 
 
     @Override
-    public void run(Args args) throws Exception {
-        Observable.concat(
+    public void run(Args args) {
+        Observable.merge(
             alice.map("Alice: "::concat),
             bob.map("Bob: "::concat),
-            jane.map("Jane: "::concat)
-        ).subscribe(System.out::println);
-
-        SECONDS.sleep(30);
+            jane.map("Jane: "::concat))
+        .blockingForEach(System.out::println);
     }
 }

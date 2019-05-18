@@ -6,12 +6,11 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static io.reactivex.Observable.just;
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class Speak2 extends Speak {
 
     @Override
-    public void run(Args args) throws Exception {
+    public void run(Args args) {
         var rnd = new Random();
         var quotes = just(
                 alice.map("Alice: "::concat),
@@ -22,11 +21,7 @@ public class Speak2 extends Speak {
 
         Observable
             .switchOnNext(quotes)
-            .subscribe(System.out::println)
-            .dispose();
-
-        SECONDS.sleep(30);
-
+            .blockingForEach(System.out::println);
     }
 
 

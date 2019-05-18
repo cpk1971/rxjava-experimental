@@ -9,12 +9,12 @@ import java.util.function.Supplier;
 
 public class App {
     private static final Map<String, Supplier<Spike>> spikes =
-        Map.of("1", First::new,
+        Map.of("first", First::new,
                 "speak", Speak::new,
                 "speak2", Speak2::new,
                 "deck", DeckOfCardsInterview::new);
 
-    private static final Supplier<Spike> current = spikes.get("speak");
+    private static final Supplier<Spike> current = spikes.get("deck");
 
     public static void main(String[] args) throws Exception {
         Optional.of(args)
