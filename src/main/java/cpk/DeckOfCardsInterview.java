@@ -110,7 +110,6 @@ public class DeckOfCardsInterview implements Spike {
             // so this builds your deck halves.  see the method below for an explanation,
             // but basically this simulates the imprecision of the human thumb admitting the
             // cards through at an uneven rate
-            new AbsoluteDelayer(random, 5);
             var firstHalf = makeHalf(origin.stream().limit(jitteredHalf)::iterator, new AbsoluteDelayer(random, cardJitter));
             var secondHalf = makeHalf(origin.stream().skip(jitteredHalf)::iterator, new AbsoluteDelayer(random, cardJitter));
 
